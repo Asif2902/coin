@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Switch MetaMask Network</title>
+  <meta charset="utf-8"/>
+  <link rel="icon" href="/faviconEth.png"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#000000"/>
+  <meta name="description" content="Web site created using create-react-app"/>
+  <link rel="apple-touch-icon" href="/logo192.png"/>
+  <link rel="manifest" href="/manifest.json"/>
+  <title>Coinflip dApp</title>
+  <link href="/static/css/2.45da8fbe.chunk.css" rel="stylesheet">
+  <link href="/static/css/main.65e713e9.chunk.css" rel="stylesheet">
   <style>
     /* Reset CSS to remove default margins and paddings */
     body, h1, h2, h3, p, ul, li {
@@ -74,9 +81,8 @@ async function switchToCustomChain() {
       console.log('Switched to Katla Testnet (Chain 0x28c60)');
       // Hide the popup after successfully switching to FrameTestnet
       document.getElementById('popup').style.display = 'none';
-      // Hide the "Add Katla Network" button
-      document.getElementById('checkButton').style.display = 'none';
       // Add your code to enable website functionality after switching
+      document.getElementById('checkButton').style.display = 'none'; // Hide the check button after switching
     } catch (error) {
       console.error('Error switching chain:', error);
     }
