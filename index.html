@@ -38,12 +38,6 @@
 </head>
 <body>
 
-<div id="root">
-  <!-- Your app content goes here -->
-  <h1>Welcome to Coinflip dApp</h1>
-  <!-- Add any other content you want -->
-</div>
-
 <script>
 async function checkConnection() {
   if (window.ethereum) {
@@ -78,7 +72,7 @@ async function switchToCustomChain() {
         }],
       });
       console.log('Switched to Katla Testnet (Chain 0x28c60)');
-      // Hide the popup after successfully switching to Katla Testnet
+      // Hide the popup after successfully switching to FrameTestnet
       document.getElementById('popup').style.display = 'none';
       // Hide the "Add Katla Network" button
       document.getElementById('checkButton').style.display = 'none';
