@@ -5,9 +5,6 @@
 const button = document.createElement('button');
 button.innerText = 'Faucet';
 button.style.position = 'fixed';
-button.style.top = '10px'; // Adjust top position as needed
-button.style.left = '50%';
-button.style.transform = 'translateX(-50%)';
 button.style.padding = '10px 20px';
 button.style.backgroundColor = '#007bff';
 button.style.color = '#fff';
@@ -19,6 +16,27 @@ button.style.cursor = 'pointer';
 button.addEventListener('click', function() {
   window.location.href = 'https://faucet.everypunks.xyz';
 });
+
+// Append button to the body
+document.body.appendChild(button);
+
+// Adjust button position based on screen size
+function adjustButtonPosition() {
+  if (window.innerWidth <= 600) { // Adjust based on screen width
+    button.style.top = '10px';
+    button.style.left = '10px';
+    button.style.transform = 'none'; // Remove transformation for mobile version
+  } else {
+    button.style.top = '10px';
+    button.style.left = '50%';
+    button.style.transform = 'translateX(-50%)';
+  }
+}
+
+// Call adjustButtonPosition initially and on window resize
+adjustButtonPosition();
+window.addEventListener('resize', adjustButtonPosition);
+
 
 // Append button to the body
 document.body.appendChild(button);
