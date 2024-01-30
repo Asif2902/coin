@@ -84,6 +84,16 @@ button.sc-feUZmu.bwwNbd {
 input.sc-gFqAkR.geSXPi {
     border-radius: 6px !important;
     background-color: #222 !important;
+    a {
+    padding: 1em 0;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    display: block;
+    background: #E81899;
+    width: 100% !important;
+    text-decoration: none;
+    }
 
 /* oneofthenfts */
 
