@@ -94,6 +94,16 @@ input.sc-gFqAkR.geSXPi {
     width: 100% !important;
     text-decoration: none;
     }
+a {
+    padding: 1em 0;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    display: block;
+    background: #E81899;
+    width: 100% !important;
+    text-decoration: none;
+}
 
 /* oneofthenfts */
 
