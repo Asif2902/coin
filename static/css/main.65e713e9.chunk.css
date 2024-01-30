@@ -105,6 +105,16 @@ a {
     text-decoration: none;
 }
 
+#cffaucet a {
+    padding: 1em 0;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    display: block;
+    background: #E81899;
+    width: 100% !important;
+    text-decoration: none;
+}
 /* oneofthenfts */
 
 /*# sourceMappingURL=main.65e713e9.chunk.css.map */
