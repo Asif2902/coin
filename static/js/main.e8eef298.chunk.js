@@ -23,13 +23,7 @@ async function connectWalletAndReload() {
           },
         ],
       });
-
-      // **Key change:** Move the `networkSwitched` flag setting inside the try block
       networkSwitched = true;
-
-      setTimeout(() => {
-        location.reload(); // Reload the page after 2 seconds
-      }, 2000);
     }
   } catch (error) {
     console.error("Error connecting wallet:", error);
