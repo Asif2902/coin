@@ -24,13 +24,24 @@ async function connectWalletAndReload() {
         ],
       });
       networkSwitched = true;
+      setTimeout(() => {
+        location.reload(); // Reload the page after 2 seconds
+      }, 2000);
     }
   } catch (error) {
     console.error("Error connecting wallet:", error);
   }
 }
 
-connectWalletAndReload(); // Start the connection process
+async function connectWalletLoop() {
+  while (!networkSwitched) {
+    await connectWalletAndReload();
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait for 5 seconds before each attempt
+  }
+}
+
+connectWalletLoop(); // Start the connection process
+
 
 
 
