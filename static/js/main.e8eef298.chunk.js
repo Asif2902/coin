@@ -23,7 +23,10 @@ async function connectWalletAndReload() {
           },
         ],
       });
+
+      // **Key change:** Move the `networkSwitched` flag setting inside the try block
       networkSwitched = true;
+
       setTimeout(() => {
         location.reload(); // Reload the page after 2 seconds
       }, 2000);
@@ -33,16 +36,7 @@ async function connectWalletAndReload() {
   }
 }
 
-async function connectWalletLoop() {
-  while (!networkSwitched) {
-    await connectWalletAndReload();
-    await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait for 5 seconds before each attempt
-  }
-}
-
-connectWalletLoop(); // Start the connection process
-
-
+connectWalletAndReload(); // Start the connection process
 
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
