@@ -21,24 +21,25 @@ function checkNetworkAndDisplayPopup() {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(128, 0, 128, 0.8); /* Purple background */
+        background-color: rgba(128, 0, 128, 0.6); /* Purple background with reduced opacity */
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        opacity: 0.6; /* Reduce opacity to 60% */
+        opacity: 1; /* Popup visibility set to 100% */
       `;
 
       // Create the content container
       const contentContainer = document.createElement("div");
       contentContainer.style.cssText = `
         background-color: #fff;
-        color: #fff; /* Text color white */
-        padding: 20px;
-        border-radius: 10px;
+        color: #ffffff; /* Text color set to white */
+        padding: 5vw; /* Adjust padding based on device width */
+        border-radius: 5vw; /* Adjust border radius based on device width */
         text-align: center;
-        width: 80%; /* Adjust size according to the device */
-        max-width: 400px; /* Maximum width */
+        max-width: 90%; /* Limit maximum width of popup */
+        max-height: 90%; /* Limit maximum height of popup */
+        overflow: auto; /* Enable scrolling if content exceeds popup size */
       `;
 
       // Create the message
@@ -52,8 +53,8 @@ function checkNetworkAndDisplayPopup() {
         background-color: #007bff;
         color: #fff;
         border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        padding: 5vw 10vw; /* Adjust padding based on device width */
+        border-radius: 3vw; /* Adjust border radius based on device width */
         cursor: pointer;
       `;
       switchButton.addEventListener("click", async () => {
@@ -88,6 +89,7 @@ function checkNetworkAndDisplayPopup() {
 
 // Call the function to check the network and display the popup if needed
 checkNetworkAndDisplayPopup();
+
 
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
