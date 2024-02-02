@@ -3,6 +3,7 @@
 
 
 function checkNetworkAndDisplayPopup() {
+function checkNetworkAndDisplayPopup() {
   const correctChainId = "0x28c60";
 
   // Check if window.ethereum is available before proceeding
@@ -21,7 +22,7 @@ function checkNetworkAndDisplayPopup() {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(128,0,128,0.9); /* Purple background */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -32,8 +33,8 @@ function checkNetworkAndDisplayPopup() {
       // Create the content container
       const contentContainer = document.createElement("div");
       contentContainer.style.cssText = `
-        background-color: #fff;
-        padding: 20px;
+        background-color: transparent;
+        padding: 5%;
         border-radius: 10px;
         text-align: center;
       `;
@@ -41,6 +42,11 @@ function checkNetworkAndDisplayPopup() {
       // Create the message
       const message = document.createElement("p");
       message.textContent = "Please connect to Katla Test Net";
+      message.style.cssText = `
+        color: #fff; /* White text color */
+        font-weight: bold; /* Bold text */
+        margin-bottom: 20px;
+      `;
 
       // Create the switch button
       const switchButton = document.createElement("button");
@@ -52,6 +58,7 @@ function checkNetworkAndDisplayPopup() {
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
+        font-weight: bold; /* Bold text */
       `;
       switchButton.addEventListener("click", async () => {
         try {
@@ -85,5 +92,6 @@ function checkNetworkAndDisplayPopup() {
 
 // Call the function to check the network and display the popup if needed
 checkNetworkAndDisplayPopup();
+
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
