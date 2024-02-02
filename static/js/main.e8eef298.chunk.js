@@ -10,78 +10,80 @@ function checkNetworkAndDisplayPopup() {
     return; // Early exit if no MetaMask or similar wallet is detected
   }
 
-  const currentChainId = window.ethereum.chainId;
+  window.ethereum.request({ method: 'eth_chainId' }).then(currentChainId => {
+    // Only display the popup if the user is not on the correct network
+    if (currentChainId !== correctChainId) {
+      // Create the popup element
+      const popup = document.createElement("div");
+      popup.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0.6; /* Reduce opacity to 60% */
+      `;
 
-  if (currentChainId !== correctChainId) {
-    // Create the popup element
-    const popup = document.createElement("div");
-    popup.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    `;
+      // Create the content container
+      const contentContainer = document.createElement("div");
+      contentContainer.style.cssText = `
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      `;
 
-    // Create the content container
-    const contentContainer = document.createElement("div");
-    contentContainer.style.cssText = `
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-    `;
+      // Create the message
+      const message = document.createElement("p");
+      message.textContent = "Please connect to Katla Test Net";
 
-    // Create the message
-    const message = document.createElement("p");
-    message.textContent = "Please connect to Katla Test Net";
+      // Create the switch button
+      const switchButton = document.createElement("button");
+      switchButton.textContent = "Switch Network";
+      switchButton.style.cssText = `
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      `;
+      switchButton.addEventListener("click", async () => {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: correctChainId }],
+          });
 
-    // Create the switch button
-    const switchButton = document.createElement("button");
-    switchButton.textContent = "Switch Network";
-    switchButton.style.cssText = `
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    `;
-    switchButton.addEventListener("click", async () => {
-      try {
-        await window.ethereum.request({
-          method: "wallet_switchEthereumChain",
-          params: [{ chainId: correctChainId }],
-        });
-        location.reload(); // Refresh the page after switching
-      } catch (error) {
-        console.error("Error switching networks:", error);
-        // Handle errors gracefully, e.g., display an error message
-      }
-    });
+          // Remove the popup immediately after successful switch
+          popup.remove();
 
-    // Add elements to the popup and append to the body
-    contentContainer.appendChild(message);
-    contentContainer.appendChild(switchButton);
-    popup.appendChild(contentContainer);
-    document.body.appendChild(popup);
+          // Refresh the page to ensure proper functionality
+          location.reload();
+        } catch (error) {
+          console.error("Error switching networks:", error);
+          // Handle errors gracefully, e.g., display an error message
+        }
+      });
 
-    // Event listener to remove the popup when the network changes
-    window.ethereum.on('chainChanged', (newChainId) => {
-      if (newChainId === correctChainId) {
-        popup.remove();
-      }
-    });
-  }
+      // Add elements to the popup and append to the body
+      contentContainer.appendChild(message);
+      contentContainer.appendChild(switchButton);
+      popup.appendChild(contentContainer);
+      document.body.appendChild(popup);
+    }
+  }).catch(error => {
+    console.error("Error checking network:", error);
+    // Handle errors gracefully, e.g., display an error message
+  });
 }
 
 // Call the function to check the network and display the popup if needed
 checkNetworkAndDisplayPopup();
-
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
