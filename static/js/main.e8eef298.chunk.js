@@ -4,6 +4,12 @@
 
 function checkNetworkAndDisplayPopup() {
   const correctChainId = "0x28c60";
+
+  // Check if window.ethereum is available before proceeding
+  if (typeof window.ethereum === 'undefined') {
+    return; // Early exit if no MetaMask or similar wallet is detected
+  }
+
   const currentChainId = window.ethereum.chainId;
 
   if (currentChainId !== correctChainId) {
@@ -59,17 +65,23 @@ function checkNetworkAndDisplayPopup() {
       }
     });
 
-    // Add elements to the popup
+    // Add elements to the popup and append to the body
     contentContainer.appendChild(message);
     contentContainer.appendChild(switchButton);
     popup.appendChild(contentContainer);
-
-    // Add the popup to the body
     document.body.appendChild(popup);
+
+    // Event listener to remove the popup when the network changes
+    window.ethereum.on('chainChanged', (newChainId) => {
+      if (newChainId === correctChainId) {
+        popup.remove();
+      }
+    });
   }
 }
 
 // Call the function to check the network and display the popup if needed
 checkNetworkAndDisplayPopup();
+
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
