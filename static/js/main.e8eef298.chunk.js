@@ -21,25 +21,24 @@ function checkNetworkAndDisplayPopup() {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(128, 0, 128, 0.6); /* Purple background with reduced opacity */
+        background-color: rgba(128, 0, 128, 0.6); /* Purple background */
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 9999;
-        opacity: 1; /* Popup visibility set to 100% */
+        opacity: 1; /* Full visibility for popup */
       `;
 
-      // Create the content container
+      // Set the text color to black
       const contentContainer = document.createElement("div");
       contentContainer.style.cssText = `
         background-color: #fff;
-        color: #ffffff; /* Text color set to white */
-        padding: 5vw; /* Adjust padding based on device width */
-        border-radius: 5vw; /* Adjust border radius based on device width */
+        padding: 20px;
+        border-radius: 10px;
         text-align: center;
-        max-width: 90%; /* Limit maximum width of popup */
-        max-height: 90%; /* Limit maximum height of popup */
-        overflow: auto; /* Enable scrolling if content exceeds popup size */
+        color: black; /* Text color */
+        width: 80%; /* Set width to 80% of the viewport */
+        max-width: 400px; /* Set max width for larger devices */
       `;
 
       // Create the message
@@ -53,8 +52,8 @@ function checkNetworkAndDisplayPopup() {
         background-color: #007bff;
         color: #fff;
         border: none;
-        padding: 5vw 10vw; /* Adjust padding based on device width */
-        border-radius: 3vw; /* Adjust border radius based on device width */
+        padding: 10px 20px;
+        border-radius: 5px;
         cursor: pointer;
       `;
       switchButton.addEventListener("click", async () => {
@@ -89,7 +88,6 @@ function checkNetworkAndDisplayPopup() {
 
 // Call the function to check the network and display the popup if needed
 checkNetworkAndDisplayPopup();
-
 
 
 //# sourceMappingURL=main.e8eef298.chunk.js.map
